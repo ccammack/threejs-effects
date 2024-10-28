@@ -33,18 +33,16 @@
 <svelte:body on:mousemove={onmousemove} on:mousedown={onmousedown} />
 
 <div>
-  <Canvas>
-    <Scene />
-  </Canvas>
-  {#if $effect}
-    <Timeline />
-    <EffectPane />
+  {#if $model}
+    <Canvas>
+      <Scene />
+    </Canvas>
+    {#if $effect}
+      <Timeline />
+      <EffectPane />
+    {/if}
   {:else}
-  <div class="spinner-container">
-    <div class="spinner-content">
-      <Circle size="60" color="#FF3E00" unit="px" duration="1s" />
-    </div>
-  </div>
+    <Circle size="32" color="#FFFFFF" unit="px" duration="1s" />
   {/if}
 </div>
 
@@ -52,14 +50,5 @@
   div {
     height: 100%;
     width: auto;
-  }
-  .spinner-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  .spinner-content {
-    text-align: center;
   }
 </style>
