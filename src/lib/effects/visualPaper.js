@@ -87,11 +87,6 @@ export function createVisualPaper(renderer, model) {
             seek: (stage) => {
                 seek(stage)
             },
-            destroy: () => {
-                return;
-                disposeThreeSubtree(effect.group());
-                effect = null;
-            },
         })
     })
 }

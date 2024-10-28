@@ -2,7 +2,7 @@
   import { T, useThrelte, useTask } from "@threlte/core";
   import { OrbitControls, Grid } from "@threlte/extras";
   import Effect from "./Effect.svelte";
-  import { type Box3, type Group } from "three";
+  import { Color, type Box3, type Group } from "three";
   import { model } from "./shared";
   import Stats from "three/addons/libs/stats.module.js";
 
@@ -11,13 +11,16 @@
   let position = [0, 0, 0];
   let target = [0, 0, 0];
 
+  // set background color
+  renderer.setClearColor(0xeeeeee);
+
   // adjust camera for building size
   const onModelChange = (model: { merged: Group; box: Box3 }) => {
     if (model && model.box) {
       const h = model.box.max.y - model.box.min.y;
       const w = Math.max(
         model.box.max.x - model.box.min.x,
-        model.box.max.z - model.box.min.z
+        model.box.max.z - model.box.min.z,
       );
 
       const d = Math.max(h, w);
@@ -37,8 +40,6 @@
     stats.update();
   });
 </script>
-
-<T.Color args={[0xeeeeee]} attach="background" />
 
 <T.PerspectiveCamera makeDefault fov={50} {position}>
   <OrbitControls enableDamping {target} />
