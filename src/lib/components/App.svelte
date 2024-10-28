@@ -5,6 +5,7 @@
   import EffectPane from "./EffectPane.svelte";
   import { file, model, effect, target } from "./shared";
   import LoadModel from "$lib/util/model";
+  import { Circle } from "svelte-loading-spinners";
 
   // handle model filename changes
   // $file = "Eiffel_Tower.glb";
@@ -38,6 +39,12 @@
   {#if $effect}
     <Timeline />
     <EffectPane />
+  {:else}
+  <div class="spinner-container">
+    <div class="spinner-content">
+      <Circle size="60" color="#FF3E00" unit="px" duration="1s" />
+    </div>
+  </div>
   {/if}
 </div>
 
@@ -45,5 +52,14 @@
   div {
     height: 100%;
     width: auto;
+  }
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .spinner-content {
+    text-align: center;
   }
 </style>
